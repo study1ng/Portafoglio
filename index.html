@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>My Portfolio</h1>
+        <p>Software Development & Machine Learning</p>
+    </header>
+
+    <div class="container">
+        <section class="about-section">
+            <h2>About Me</h2>
+            <p>名前: BAO WENQUAN(ほう ぶんけん)</p>
+            <p>日本名: 加藤 大侑(かとう だいすけ)</p>
+            <p>
+                現在、大学院の修士課程に在籍し研究を行っています。学部時代からプログラミングに触れ、課題解決や研究の効率化を目的としたソフトウェア開発や機械学習フレームワークの構築に取り組んでいます。<br>
+            </p>
+        </section>
+
+        <section>
+            <h2>Projects</h2>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <a href="https://github.com/study1ng/automata" target="_blank" rel="noopener noreferrer">automata</a>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">学部2年</span>
+                    </div>
+                    <p class="project-desc">
+                        大学2年生の時にPythonで作成しました。オートマトンの授業の課題に対応するために開発したもので、オートマトンの動作をプログラムで正確に模倣し、答えの確認に利用しました。
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <a href="https://github.com/study1ng/medpp" target="_blank" rel="noopener noreferrer">medpp</a>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Rust</span>
+                        <span class="tag">学部4年</span>
+                    </div>
+                    <p class="project-desc">
+                        大学4年生の時にRustで作成した、医用画像に関する行列計算を行うDSLです。「簡単な処理を簡単に書く」というコンセプトで開発しています。現在は研究が忙しくなかなか開発時間が取れないため、未完成のまま放置していますが、時間が取れたときに開発を継続したいと考えています。
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        <a href="https://github.com/study1ng/mdmethods" target="_blank" rel="noopener noreferrer">mdmethods</a>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">学部4年</span>
+                    </div>
+                    <p class="project-desc">
+                        現在の研究で作成している機械学習フレームワークです。データ分析、前処理、事前学習、ファインチューニングなどを一貫して行えるようにすることを目的としています。まだまだ開発中で、今はMIMとMaskFeatしか実装しておらず、設計や運用面で甘い点があると感じていますが、修士の2年間を通じて改善していく予定です。
+                    </p>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 My Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.project-card');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
