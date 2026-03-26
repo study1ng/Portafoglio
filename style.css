@@ -7,19 +7,15 @@
 /* ヘッダー縮小アニメーションの定義 */
 @keyframes shrinkHeader {
   0% {
-    /* 初期状態: 画面いっぱいの高さにする */
     min-height: 100vh;
     padding: 0 1.5rem;
   }
   30% {
-    /* 最初の15%だけ全画面をキープして、少しだけ「間」を作る */
     min-height: 100vh;
     padding: 0 1.5rem;
   }
   100% {
-    /* 残りの時間を使ってゆっくりと元の高さに戻る */
     min-height: 0;
-    /* 終了時の上下の余白を少し増やして、縮小後の窮屈感を減らす */
     padding: 1rem 1.5rem 3rem;
   }
 }
@@ -39,7 +35,6 @@ header {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  /* 1.2秒かけて滑らかに縮むアニメーション（時間は好みに合わせて調整してください） */
   animation: shrinkHeader 5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 header h1 {
@@ -47,7 +42,6 @@ header h1 {
   font-weight: 700;
   color: #0f172a;
   margin: 0 0 1rem;
-  /* タグ風の装飾 */
 }
 header h1::before {
   content: "< ";
@@ -60,7 +54,7 @@ header h1::after {
 header p {
   font-size: 1.1rem;
   color: #475569;
-  font-family: monospace; /* 等幅フォントでコードっぽく */
+  font-family: monospace;
   margin: 0;
   position: relative;
   display: inline-block;
@@ -191,7 +185,9 @@ span.nowrap-word {
   }
 }
 .details {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
   position: fixed;
   background-color: #333;
   color: #fff;
@@ -200,13 +196,18 @@ span.nowrap-word {
   font-size: 14px;
   z-index: 1000;
   width: 50vw;
-  max-height: 60vh;
+  max-height: 50vh;
   overflow-y: auto;
   white-space: normal;
 }
+.details iframe {
+  max-width: 100%;
+}
 
 .details.is-active {
-  display: block;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 #about-me-tab .about-me-content {
@@ -292,9 +293,9 @@ span.nowrap-word {
   transition: top 0.3s ease, box-shadow 0.3s ease;
 }
 #about-me-tab .about-me-content #language-exprs .language-box:hover {
-  top: -3px; /* transformの代わり */
+  top: -3px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-  z-index: 10; /* ホバー中のボックスを最前面へ */
+  z-index: 10;
 }
 #about-me-tab .about-me-content #language-exprs .language-box .language {
   font-size: 1.6rem;
@@ -536,15 +537,17 @@ span.nowrap-word {
   padding: 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   border-top: 4px solid #38bdf8;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: top 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   z-index: 1;
+  position: relative;
+  top: 0;
 }
 #artifacts-tab .artifacts .artifact:nth-child(even) {
   border-top-color: #f472b6;
 }
 #artifacts-tab .artifacts .artifact:hover, #artifacts-tab .artifacts .artifact:has(.details.is-active) {
-  transform: translateY(-5px);
+  top: -5px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   z-index: 10;
 }

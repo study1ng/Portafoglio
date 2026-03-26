@@ -10,7 +10,7 @@ document.addEventListener(
         }
         )
         // details表示ロジック
-        document.querySelectorAll(".expr-title, .my-history-title, .artifact-title").forEach(
+        document.querySelectorAll(".expr-title, .my-history-title, .artifact-title, .details-box").forEach(
             ttl => {
                 const container = ttl.closest(".expr, .my-history-box, .artifact");
                 const details = container.querySelector(".details");
