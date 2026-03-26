@@ -1,101 +1,397 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
     <header>
         <h1>My Portfolio</h1>
         <p>Software Development & Machine Learning</p>
     </header>
 
-    <div class="container">
-        <section class="about-section">
-            <h2>About Me</h2>
-            <p>名前: BAO WENQUAN(ほう ぶんけん)</p>
-            <p>日本名: 加藤 大侑(かとう だいすけ)</p>
-            <p>
-                現在、大学院の修士課程に在籍し研究を行っています。学部時代からプログラミングに触れ、課題解決や研究の効率化を目的としたソフトウェア開発や機械学習フレームワークの構築に取り組んでいます。<br>
-            </p>
-        </section>
+    <nav id="tab-nav">
+        <ul>
+            <li id="about-me-nav" class="opening">About Me</li>
+            <li id="my-history-nav">My History</li>
+            <li id="artifacts-nav">Artifacts</li>
+        </ul>
+    </nav>
 
-        <section>
-            <h2>Projects</h2>
-            <div class="projects-grid">
+    <div id="about-me-tab">
+        <div class="tab-header">
+            <h3>自己紹介</h3>
+        </div>
 
-                <div class="project-card">
-                    <div class="project-title">
-                        <a href="https://github.com/study1ng/automata" target="_blank" rel="noopener noreferrer">automata</a>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">学部2年</span>
-                    </div>
-                    <p class="project-desc">
-                        大学2年生の時にPythonで作成しました。オートマトンの授業の課題に対応するために開発したもので、オートマトンの動作をプログラムで正確に模倣し、答えの確認に利用しました。
-                    </p>
+        <div class="about-me-content">
+            <div id="name">
+                <div class="labeled-content">
+                    <span class="label">本名</span>
+                    <span class="content">
+                        <ruby>包<rp>(</rp>
+                            <rt>ホウ</rt>
+                            <rp>)</rp>
+                        </ruby>
+                        <ruby>文<rp>(</rp>
+                            <rt>ブン</rt>
+                            <rp>)</rp>
+                        </ruby><ruby>权<rp>(</rp>
+                            <rt>ケン</rt>
+                            <rp>)</rp>
+                        </ruby>
+                    </span>
                 </div>
-
-                <div class="project-card">
-                    <div class="project-title">
-                        <a href="https://github.com/study1ng/medpp" target="_blank" rel="noopener noreferrer">medpp</a>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">Rust</span>
-                        <span class="tag">学部4年</span>
-                    </div>
-                    <p class="project-desc">
-                        大学4年生の時にRustで作成した、医用画像に関する行列計算を行うDSLです。「簡単な処理を簡単に書く」というコンセプトで開発しています。現在は研究が忙しくなかなか開発時間が取れないため、未完成のまま放置していますが、時間が取れたときに開発を継続したいと考えています。
-                    </p>
+                <div class="labeled-content">
+                    <span class="label">日本名</span>
+                    <span class="content">
+                        <ruby>加藤<rp>(</rp>
+                            <rt>カトウ</rt>
+                            <rp>)</rp>
+                        </ruby>
+                        <ruby>大侑<rp>(</rp>
+                            <rt>ダイスケ</rt>
+                            <rp>)</rp>
+                        </ruby>
+                    </span>
                 </div>
-
-                <div class="project-card">
-                    <div class="project-title">
-                        <a href="https://github.com/study1ng/mdmethods" target="_blank" rel="noopener noreferrer">mdmethods</a>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">学部4年</span>
-                    </div>
-                    <p class="project-desc">
-                        現在の研究で作成している機械学習フレームワークです。データ分析、前処理、事前学習、ファインチューニングなどを一貫して行えるようにすることを目的としています。まだまだ開発中で、今はMIMとMaskFeatしか実装しておらず、設計や運用面で甘い点があると感じていますが、修士の2年間を通じて改善していく予定です。
-                    </p>
-                </div>
-
             </div>
-        </section>
+            <section id="introduction">
+                <h3>自己紹介</h3>
+                <p>名古屋大学情報学研究科知能システム系森・小田研究室M1の加藤です.</p>
+            </section>
+            <section id="hobby">
+                <h3>趣味</h3>
+                <p>散歩, 旅行, 写真撮影</p>
+            </section>
+            <div id="language-exprs">
+                <div id="python" class="language-box">
+                    <div class="language">Python</div>
+                    <time datetime="2022-03" class="start-date">
+                        2022年3月
+                    </time>
+                    <div class="exprs">
+                        <div class="expr">
+                            <div class="expr-title">
+                                <span class="category">授業</span>
+                            </div>
+                        </div>
+                        <div class="expr">
+                            <div class="expr-title">
+                                <span class="category">アルバイト</span>
+                                <span class="content">トップページを起点とした再帰的リンク探索による非webp画像発見</span>
+                            </div>
+                            <div class="details">
+                                <p>
+                                    WebPとは2024年にRFC化された画像圧縮フォーマットであり, 従来のjpegやpngより高い圧縮率を可能としました.
+                                    アルバイトにおいて読み込み速度を向上させるために全画像をWebPに置き換えるというタスクに取り掛かっていました. しかし, 手作業で一枚一枚画像を確認し,
+                                    リンクを置き換えるのはミスを誘発しやすい作業でした. そこで, 私はサイト内ページをクロールし, 非WebP画像を自動でリストアップするプログラムを作成しました. また,
+                                    サーバへの負担を軽減するためにアクセス頻度を制限しました. その結果, 安全かつ網羅的に置き換えることに成功しました.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="expr">
+                            <a href="https://github.com/study1ng/mdmethods/" target="_blank" rel="noopener noreferrer">
+                                <div class="expr-title">
+                                    <span class="category">研究</span>
+                                    <span class="content">深層学習手法による3次元CT像臓器領域自動抽出</span>
+                                </div>
+                            </a>
+                            <div class="details">
+                                <p>
+                                    3次元CT像臓器領域抽出とは, CT像の各ピクセルについて, それがどの臓器に属しているか判断することです.
+                                    例えば肝臓はどの血管によって栄養などが届けられているかによっていくつかの小区域に分割され, これは手術計画立案に重要です.
+                                    臓器領域抽出はこのような技術の前処理として必要不可欠です. 私はPytorchフレームワークを使って深層学習によって臓器領域の自動抽出を行っています.
+                                </p>
+                                <div class="links">
+                                    <a href="#thesis">卒業研究</a>
+                                    <a href="#mdmethods">現在の研究</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="rust" class="language-box">
+                    <div class="language">Rust</div>
+                    <time datetime="2022-12" class="start-date">
+                        2022年12月
+                    </time>
+                    <div class="exprs">
+                        <div class="expr">
+                            <a href="https://github.com/study1ng/medpp" target="_blank" rel="noopener noreferrer">
+                                <div class="expr-title">
+                                    <span class="category">個人開発</span>
+                                    <span class="content">医用画像特化のDSL</span>
+                                </div>
+                            </a>
+                            <div class="details">
+                                <p>
+                                    医用画像に関する処理をPythonで書く場合, データのロードやメタ属性の解決などに多くの, 実際の処理とは関係のない冗長なコードを書く必要がある. 例えば,
+                                    単純に二枚の領域抽出結果の差分をとるだけでも十数行程度のコードを書く必要があり, これらのほとんどはライブラリのインポートやパスの解決など本筋でない処理を行っています.
+                                    こうした冗長なコードを言語側で担当し, 簡単なコードを簡単に書くというコンセプトのもと, 私はMedp4という医用画像に特化した言語を開発しています.
+                                    研究の合間に実装をしているので, 最近はなかなか更新できていませんが, 博士前期課程の間に開発を完了させて利用できる状態に仕上げたいと考えています.
+                                </p>
+                                <div class="links">
+                                    <a href="#medp4">medp4</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="javascript" class="language-box">
+                    <div class="language">JavaScript</div>
+                    <time datetime="2022-08" class="start-date">
+                        2022年8月
+                    </time>
+                    <div class="exprs">
+                        <div class="expr">
+                            <div class="expr-title">
+                                <span class="category">アルバイト</span>
+                                <span class="content">Google Recaptchaの導入</span>
+                            </div>
+                        </div>
+                        <div id="auto-blog" class="expr">
+                            <div class="expr-title" id="auto-blog">
+                                <span class="category">アルバイト</span>
+                                <span class="content">検索分析によるブログテーマ自動提案</span>
+                            </div>
+                            <div class="details">
+                                <p>
+                                    Google検索における検索順位の向上は新規顧客獲得に大きな影響をもたらし, そのためには定期的かつ潜在顧客の興味に合致したブログ更新が重要です. しかし,
+                                    Google検索の膨大なデータから適切なブログ案を分析するのは決して簡単なことではありません. そこで, 私はSearch Analytics for
+                                    Sheetsから取得できるクリック数やインプレッション数などのデータを活用し,
+                                    検索クエリに対して形態素解析を施して得られる各単語(検索トークンと呼びます)に対して重要度をつけ, それをもとに逆にクエリやページのスコア付けを行うアルゴリズムを開発しました.
+                                    これを用いて, 私は改善対象のページやブログテーマの自動提案を行い, 集客力の向上に貢献しました.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="html-css" class="language-box">
+                    <div class="language">HTML/CSS</div>
+                    <time datetime="2022-07" class="start-date">
+                        2022年7月
+                    </time>
+                    <div class="exprs">
+                        <div class="expr">
+                            <div class="expr-title">
+                                <span class="category">アルバイト</span>
+                                <span class="content">ウェブサイトの制作</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="php" class="language-box">
+                    <div class="language">PHP</div>
+                    <time datetime="2023-08" class="start-date">
+                        2023年8月
+                    </time>
+                    <div class="exprs">
+                        <div class="expr">
+                            <div class="expr-title">
+                                <span class="category">アルバイト</span>
+                                <span class="content">WordPressの利用</span>
+                            </div>
+                            <div class="details">
+                                <p>
+                                    アルバイト先ではWordPressを利用して動的ページを作成したり, Google Recaptchaや自動ブログテーマ提案システムのサーバサイドの実装を行った.
+                                </p>
+                                <div class="links">
+                                    <a href="#auto-blog">自動ブログテーマ提案システム</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 My Portfolio. All rights reserved.</p>
-    </footer>
+    <div id="my-history-tab">
+        <div class="tab-header">
+            <h3>自分史</h3>
+            <p>これまでの私の人生の中で起きた主な出来事や挑戦について紹介しています</p>
+        </div>
+        <div class="my-histroies">
+            <div class="my-history-box">
+                <div class="my-history-title">
+                    <time datetime="2019-04">2019年4月</time>
+                    <span><span class="nowrap-word">岐阜県立</span><span class="nowrap-word">岐阜北</span><span
+                            class="nowrap-word">高等学校</span> <span class="nowrap-word">入学</span></span>
+                </div>
+            </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.project-card');
-            
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15 
-            };
+            <div class="my-history-box">
+                <a href="https://www.spogomi.or.jp/zenkoku/2020/assets/pdf/2019/spogomi_2019_report" target="_blank"
+                    rel="noopener noreferrer">
+                    <div class="my-history-title">
+                        <time datetime="2019-08-05">2019年8月5日</time>
+                        <span><span class="nowrap-word">スポGOMI甲子園</span><span class="nowrap-word">岐阜県大会</span> <span
+                                class="nowrap-word">出場</span></span>
+                    </div>
+                </a>
+                <div class="details">
+                    <p>海と日本プロジェクトが主催する長良川沿いのごみ拾いを行うスポGOMI甲子園岐阜県大会に出場しました. 私たちのチームは他のチームより早く出発して, できるだけ遠くに行く戦略をとっていたのですが,
+                        惜しくも優勝チームには一歩及びませんでした.</p>
+                    <iframe width="560" height="315"
+                        src="https://www.youtube.com/embed/ns1U9Qnf9eY?si=_mBqvZRKkj0dN3Ki&start=23&enablejsapi=1"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+            <div class="my-history-box">
+                <div class="my-history-title">
+                    <time datetime="2022-03">2022年3月</time>
+                    <span><span class="nowrap-word">岐阜県立</span><span class="nowrap-word">岐阜北</span><span
+                            class="nowrap-word">高等学校</span> <span class="nowrap-word">卒業</span></span>
+                </div>
+            </div>
 
-            cards.forEach(card => {
-                observer.observe(card);
-            });
-        });
-    </script>
+            <div class="my-history-box">
+                <div class="my-history-title">
+                    <time datetime="2022-04">2022年4月</time>
+                    <span><span class="nowrap-word">名古屋大学</span><span class="nowrap-word">情報学部</span><span
+                            class="nowrap-word">コンピュータ科学科</span> <span class="nowrap-word">入学</span></span>
+                </div>
+            </div>
+
+            <div class="my-history-box">
+                <div class="my-history-title">
+                    <time datetime="2023-08-07">2023年8月7日</time>
+                    <span><span class="nowrap-word">名古屋大学</span><span class="nowrap-word">オープン</span><span
+                            class="nowrap-word">キャンパス</span><span class="nowrap-word">学生企画</span> <span
+                            class="nowrap-word">運営</span></span>
+                </div>
+                <div class="details">
+                    <p>名古屋大学生協学生委員会のオープンキャンパス班の副リーダーとして名古屋大学オープンキャンパスの運営に携わりました. コロナ禍が始まって以降初めての対面でのオープンキャンパスであり,
+                        メンバー全員が未経験者であったこと, カリキュラム改革によって従来の時間割が通じなかったこと, また大学, 生協, 学生委員会の三者協同で行うイベントであるため,
+                        単独での意思決定が難しかったことがハードルとして立ちはだかりました. 私たちは大学教員との直接交渉や各方面との進捗共有,
+                        合意形成の徹底によって無事にオープンキャンパスを成功させることができました. </p>
+                </div>
+            </div>
+
+            <div class="my-history-box">
+                <a href="http://www.newves.org/wiki/index.php" target="_blank" rel="noopener noreferrer">
+                    <div class="my-history-title">
+                        <time datetime="2025-04-01">2025年4月1日</time>
+                        <span><span class="nowrap-word">森・小田</span><span class="nowrap-word">研究室</span> <span
+                                class="nowrap-word">配属</span></span>
+                    </div>
+                </a>
+                <div class="details">
+                    <p>森・小田研究室は医用画像処理にまつわる研究を行っている研究室であり, その研究分野はコンピュータ支援診断・外科が主であり, 私が取り扱っている医用画像からの領域抽出他, 所見文自動生成,
+                        仮想化内視鏡システムなど多岐にわたります. </p>
+                </div>
+            </div>
+
+            <div class="my-history-box">
+                <div class="my-history-title">
+                    <time datetime="2026-03-25">2026年3月25日</time>
+                    <span><span class="nowrap-word">名古屋大学</span><span class="nowrap-word">情報学部</span><span
+                            class="nowrap-word">コンピュータ科学科</span> <span class="nowrap-word">卒業</span></span>
+                </div>
+            </div>
+
+            <div class="my-history-box">
+                <div class="my-history-title">
+                    <time datetime="2026-04-05">2026年4月5日</time>
+                    <span><span class="nowrap-word">名古屋大学</span><span class="nowrap-word">大学院</span><span
+                            class="nowrap-word">情報学研究科</span><span class="nowrap-word">知能システム専攻</span> <span
+                            class="nowrap-word">入学</span></span>
+                </div>
+            </div>
+
+            <div class="my-history-box">
+                <div class="my-history-title">
+                    <time datetime="2026-07">2026年7月</time>
+                    <span><span class="nowrap-word">第45回</span> <span class="nowrap-word">日本医用画像</span><span
+                            class="nowrap-word">工学会大会</span> <span class="nowrap-word">発表</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="artifacts-tab">
+        <div class="tab-header">
+            <h3>成果物</h3>
+            <p>今まで作ってきたもののうち, ウェブ上に公開できるものを紹介します.</p>
+        </div>
+        <div class="artifacts">
+            <div class="artifact" id="medp4">
+                <a href="https://github.com/study1ng/medpp/" target="_blank" rel="noopener noreferrer">
+                    <div class="artifact-title">
+                        <span class="artifact-category">
+                            個人開発
+                        </span>
+                        <span class="artifact-category">
+                            Medp4
+                        </span>
+                    </div>
+                </a>
+                <div class="details">
+                    <p>
+                        医用画像に関する処理をPythonで書く場合, データのロードやメタ属性の解決などに多くの, 実際の処理とは関係のない冗長なコードを書く必要がある. 例えば,
+                        単純に二枚の領域抽出結果の差分をとるだけでも十数行程度のコードを書く必要があり, これらのほとんどはライブラリのインポートやパスの解決など本筋でない処理を行っています.
+                        こうした冗長なコードを言語側で担当し, 簡単なコードを簡単に書くというコンセプトのもと, 私はMedp4という医用画像に特化した言語を開発しています. 研究の合間に実装をしているので,
+                        最近はなかなか更新できていませんが, 博士前期課程の間に開発を完了させて利用できる状態に仕上げたいと考えています.
+                    </p>
+                </div>
+            </div>
+
+            <div class="artifact" id="thesis">
+                <a href="https://1drv.ms/p/c/915fa0e4e31dee9b/IQBHBmUMqkH7R4C0TjzAv4cbAWQtmUqXgCaB9hdaRMz-CDY?e=Btz4Xz"
+                    target="_blank" rel="noopener noreferrer">
+                    <div class="artifact-title">
+                        <span class="artifact-category">
+                            研究
+                        </span>
+                        <span class="artifact-category">
+                            卒業研究/医用画像におけるMamba-2の適用可能性
+                        </span>
+                    </div>
+                </a>
+                <div class="details">
+                    <p>
+                        学部時代には医用画像におけるMamba-2の適用可能性というテーマで研究を行いました. Mamba-2は状態空間モデルという枠組みに属しており,
+                        Mambaというモジュールの後継的研究にあたります. Mamba-2はMambaと比較して, コア部分をGPUが計算しやすい形に分解, 再構成するため,
+                        計算速度や精度などを向上させられるとされてきました. 医用画像分野においてMambaの適用可能性にはすでにU-MambaやSegMambaなどいくつかの研究がありましたが,
+                        Mamba-2についてはまだ未踏の分野でした. そこで私はMamba-2を利用したモデルとMambaを利用したモデルについて比較し, 精度については大きな変化はないが,
+                        計算速度についてはMambaの方が勝るという結果を得ました. また, その原因について分析したところ, Mamba-2は内部でコア部分の計算を分解・再構成するコストを余分に要しており,
+                        これは入力データが小さい環境においては高速化の恩恵の方が大きくなるが, 医用画像のような大きなデータを扱うときには分解・再構成にかかるコストが大きくなるためだとわかりました.
+                    </p>
+                    <iframe src="/img/example.pdf" width="100%" height="600px">
+                        <p>PDFが表示されない場合は、<a href="/img/example.pdf">こちら</a>からダウンロードしてください。</p>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="artifact" id="mdmethods">
+                <a href="https://github.com/study1ng/mdmethods/" target="_blank" rel="noopener noreferrer">
+                    <div class="artifact-title">
+                        <span class="artifact-category">
+                            研究
+                        </span>
+                        <span class="artifact-category">
+                            医用画像深層学習フレームワーク
+                        </span>
+                    </div>
+                </a>
+                <div class="details">
+                    <p>
+                        学部時代はnnU-Netというフレームワークを利用していましたが, nnU-Netは基本的には0から学習させることを念頭に置いており, 各種事前学習手法への拡張が難しい状態にあります.
+                        そこで私は自ら拡張性が高いフレームワークを実装しようと試みています. フレームワークの基盤となるモデルの基底クラスや各種モジュールはすでに実装がほとんど完了しており,
+                        事前学習手法についてもSimMIMとMaskFeatの二種類について実装が完了しております.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

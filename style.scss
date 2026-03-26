@@ -1,0 +1,625 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+
+$main-color: #f8fafc;
+$sub-color: #0f172a;
+$accent-blue: #38bdf8;
+$accent-pink: #f472b6;
+
+* {
+    box-sizing: content-box;
+}
+
+body {
+    background-color: $main-color;
+    color: $sub-color;
+    font-size: 16px;
+    font-family: "Noto Sans JP", sans-serif;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+}
+header {
+    text-align: center;
+    padding: 1rem 1rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin: 0 0 1rem;
+        letter-spacing: 0.05em;
+        /* テキストにグラデーションを適用 */
+        background: linear-gradient(135deg, $accent-blue, $accent-pink);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    p {
+        font-size: 1.2rem;
+        color: #64748b; /* スレートグレー系で落ち着かせる */
+        font-weight: 500;
+        margin: 0;
+        letter-spacing: 0.1em;
+    }
+}
+span.nowrap-word {
+    white-space: nowrap;
+}
+
+#tab-nav {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    z-index: 1000;
+    background-color: rgba($sub-color, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba($main-color, 0.1);
+
+    ul {
+        display: flex;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        flex: 1;
+        text-align: center;
+        padding: 1.25rem 0;
+        color: rgba($main-color, 0.7);
+        font-size: 0.95rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+
+        &:not(:last-child)::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 40%;
+            background-color: rgba($main-color, 0.3);
+        }
+
+        &:hover {
+            color: $main-color;
+            background-color: rgba($main-color, 0.05);
+        }
+
+        &.opening {
+            color: $main-color;
+            font-weight: 600;
+
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: -1px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60%;
+                height: 4px;
+                background: linear-gradient(90deg, $accent-blue, $accent-pink);
+                border-radius: 2px 2px 0 0;
+            }
+        }
+    }
+}
+
+#tab-nav:has(ul #about-me-nav.opening) ~ #about-me-tab {
+    display: block;
+}
+#tab-nav:not(:has(ul #about-me-nav.opening)) ~ #about-me-tab {
+    display: none;
+}
+#tab-nav:has(ul #my-history-nav.opening) ~ #my-history-tab {
+    display: block;
+}
+#tab-nav:not(:has(ul #my-history-nav.opening)) ~ #my-history-tab {
+    display: none;
+}
+#tab-nav:has(ul #artifacts-nav.opening) ~ #artifacts-tab {
+    display: block;
+}
+#tab-nav:not(:has(ul #artifacts-nav.opening)) ~ #artifacts-tab {
+    display: none;
+}
+
+$loader-rottime: 0.7s;
+
+.loader {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #ccc;
+    border-top-color: #007bff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    animation: spin $loader-rottime linear forwards;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.details {
+    display: none;
+    position: fixed;
+    background-color: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1000;
+    width: 50vw;
+    max-height: 60vh;
+    overflow-y: auto;
+    white-space: normal;
+}
+
+.details.is-active {
+    display: block;
+}
+
+#about-me-tab .about-me-content {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    h3 {
+        font-size: 1.4rem;
+        border-left: 4px solid $accent-blue;
+        padding-left: 0.8rem;
+        margin-bottom: 1rem;
+        color: $sub-color;
+    }
+
+    #name {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        background: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        margin-bottom: 2.5rem;
+
+        @media (min-width: 600px) {
+            flex-direction: row;
+            justify-content: center;
+            gap: 4rem;
+        }
+
+        .labeled-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+
+            .label {
+                background: rgba($sub-color, 0.05);
+                color: $sub-color;
+                padding: 0.3rem 0.8rem;
+                border-radius: 6px;
+                font-size: 0.85rem;
+                font-weight: 700;
+                border: 1px solid rgba($sub-color, 0.1);
+            }
+
+            .content {
+                font-size: 1.4rem;
+                font-weight: 700;
+                letter-spacing: 0.15em;
+
+                ruby {
+                    rt {
+                        font-size: 0.55em;
+                        color: #64748b;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
+
+    // 自己紹介・趣味セクション
+    section {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        margin-bottom: 2.5rem;
+
+        p {
+            margin: 0;
+            color: #475569;
+            line-height: 1.8;
+        }
+    }
+
+    #language-exprs {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 3rem;
+
+        .language-box {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-top: 4px solid $accent-pink;
+            position: relative;
+            top: 0;
+            z-index: 1;
+            transition:
+                top 0.3s ease,
+                box-shadow 0.3s ease;
+
+            &:hover {
+                top: -3px; /* transformの代わり */
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+                z-index: 10; /* ホバー中のボックスを最前面へ */
+            }
+
+            .language {
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: $sub-color;
+                margin-bottom: 0.2rem;
+            }
+
+            .start-date {
+                display: block;
+                font-size: 0.9rem;
+                color: #94a3b8;
+                margin-bottom: 1.5rem;
+
+                &::before {
+                    content: "Started: ";
+                    font-size: 0.8rem;
+                    opacity: 0.8;
+                }
+            }
+
+            .exprs {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                .expr {
+                    position: relative;
+                    padding: 1.2rem;
+                    background: $main-color;
+                    border-radius: 8px;
+                    border: 1px solid rgba(0, 0, 0, 0.03);
+                    transition: background-color 0.2s ease;
+
+                    // JavaScriptでdetailsを表示するためのトリガー要素だとわかるように
+                    &:has(.details) {
+                        cursor: pointer;
+
+                        &:hover {
+                            background: darken($main-color, 3%);
+                        }
+                    }
+
+                    a {
+                        text-decoration: none;
+                        color: inherit;
+                        display: block;
+                    }
+
+                    .expr-title {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        flex-wrap: wrap;
+
+                        .category {
+                            background: rgba($accent-blue, 0.15);
+                            color: darken($accent-blue, 15%);
+                            padding: 0.25rem 0.75rem;
+                            border-radius: 20px;
+                            font-size: 0.8rem;
+                            font-weight: 700;
+                            white-space: nowrap;
+                        }
+
+                        .content {
+                            font-weight: 500;
+                            color: #334155;
+                            line-height: 1.5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.tab-header {
+    text-align: center;
+    margin-bottom: 4rem;
+
+    h3 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        position: relative;
+        color: $sub-color;
+
+        &::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, $accent-blue, $accent-pink);
+            margin: 0.8rem auto 0;
+            border-radius: 2px;
+        }
+    }
+
+    p {
+        color: #64748b;
+    }
+}
+
+#my-history-tab {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+
+    .my-histroies {
+        position: relative;
+        padding: 2rem 0;
+
+        // 中央の時間軸（縦線）
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px; // 模様を見やすくするため少し太くします
+            border-radius: 4px;
+            // 斜めのストライプ模様を設定
+            background: repeating-linear-gradient(
+                -45deg,
+                rgba($accent-blue, 0.5),
+                rgba($accent-blue, 0.5) 8px,
+                rgba($main-color, 0) 8px,
+                rgba($main-color, 0) 16px
+            );
+            background-size: 100% 22.6px;
+            animation: scrollStripe 3s linear infinite; // アニメーションで流す
+            z-index: 0;
+        }
+        .my-history-box {
+            position: relative;
+            width: 50%;
+            margin-bottom: 2.5rem;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            z-index: 1;
+            &:hover,
+            &:has(.details.is-active) {
+                z-index: 999; // sticky navを超えないように
+            }
+            // HTML内でaタグの有無が混在しているため、aタグのレイアウト挙動を親に合わせる
+            > a {
+                display: flex;
+                width: 100%;
+                text-decoration: none;
+            }
+
+            // ★ ドットをタイトル枠から分離して作成
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: $accent-blue;
+                box-shadow: 0 0 0 4px $main-color;
+                z-index: 2;
+                transition: all 0.3s ease;
+            }
+
+            // 奇数要素：左側に配置
+            &:nth-child(odd) {
+                left: 0;
+                justify-content: flex-end;
+                padding-right: 40px; // ★ 縦線からタイトル枠を遠ざける
+
+                &::before {
+                    right: -8px; // 縦線上にドットを配置
+                }
+
+                > a {
+                    justify-content: flex-end;
+                }
+
+                .my-history-title {
+                    justify-content: flex-end;
+                    flex-direction: row-reverse; // 展開時にテキスト配置が自然になるよう反転
+
+                    time {
+                        margin: 0 0 0 1rem; // 余白を反転
+                    }
+                }
+            }
+
+            // 偶数要素：右側に配置
+            &:nth-child(even) {
+                left: 50%;
+                justify-content: flex-start;
+                padding-left: 40px; // ★ 縦線からタイトル枠を遠ざける
+
+                &::before {
+                    left: -8px; // 縦線上にドットを配置
+                }
+
+                > a {
+                    justify-content: flex-start;
+                }
+
+                .my-history-title {
+                    justify-content: flex-start;
+
+                    time {
+                        margin: 0 1rem 0 0;
+                    }
+                }
+            }
+
+            .my-history-title {
+                position: relative;
+                width: max-content; // ★ テキストの長さに合わせて枠が伸び縮みする
+                max-width: 100%; // 画面幅を超えないように制御
+                height: auto;
+                min-height: 40px;
+                border-radius: 20px;
+                background: #fff;
+                border: 2px solid $accent-blue;
+                display: flex;
+                align-items: center;
+                box-sizing: border-box;
+                // white-space: nowrap;
+                padding: 0.5rem 1.2rem; // 枠内の余白
+                transition: all 0.3s ease;
+                cursor: pointer;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+                time {
+                    font-size: 0.9rem;
+                    font-weight: 700;
+                    color: $accent-blue;
+                    transition: color 0.3s;
+                    white-space: nowrap;
+                }
+
+                span {
+                    font-size: 0.95rem;
+                    font-weight: 500;
+                    color: $sub-color;
+                }
+            }
+
+            // ホバー時のアクション
+            &:hover {
+                &::before {
+                    transform: translateY(-50%) scale(1.3);
+                    background: $accent-pink;
+                }
+
+                .my-history-title {
+                    border-color: $accent-pink;
+                    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+                    transform: translateY(-2px); // ふわっと浮き上がる
+
+                    time {
+                        color: $accent-pink;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes scrollStripe {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 22.6px;
+    }
+}
+
+#artifacts-tab {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+
+    .artifacts {
+        display: grid;
+        // 画面幅に応じて自動的にカラム数を調整するグリッド
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+
+        .artifact {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-top: 4px solid $accent-blue;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+
+            // 交互にアクセントカラーを変更
+            &:nth-child(even) {
+                border-top-color: $accent-pink;
+            }
+
+            &:hover,
+            &:has(.details.is-active) {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+                z-index: 10;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+                display: block;
+                height: 100%;
+            }
+
+            .artifact-title {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
+
+                .artifact-category {
+                    // 1つ目の要素（「個人開発」「研究」など）をバッジ化
+                    &:first-child {
+                        background: rgba($sub-color, 0.05);
+                        color: #64748b;
+                        padding: 0.3rem 0.8rem;
+                        border-radius: 20px;
+                        font-size: 0.8rem;
+                        font-weight: 700;
+                        border: 1px solid rgba($sub-color, 0.1);
+                    }
+
+                    // 2つ目の要素（作品名）をタイトルとして強調
+                    &:nth-child(2) {
+                        font-size: 1.3rem;
+                        font-weight: 700;
+                        color: $sub-color;
+                        line-height: 1.4;
+                    }
+                }
+            }
+        }
+    }
+}
