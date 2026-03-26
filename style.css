@@ -4,6 +4,25 @@
   box-sizing: content-box;
 }
 
+/* ヘッダー縮小アニメーションの定義 */
+@keyframes shrinkHeader {
+  0% {
+    /* 初期状態: 画面いっぱいの高さにする */
+    min-height: 100vh;
+    padding: 0 1.5rem;
+  }
+  30% {
+    /* 最初の15%だけ全画面をキープして、少しだけ「間」を作る */
+    min-height: 100vh;
+    padding: 0 1.5rem;
+  }
+  100% {
+    /* 残りの時間を使ってゆっくりと元の高さに戻る */
+    min-height: 0;
+    /* 終了時の上下の余白を少し増やして、縮小後の窮屈感を減らす */
+    padding: 1rem 1.5rem 3rem;
+  }
+}
 body {
   background-color: #f8fafc;
   color: #0f172a;
@@ -15,31 +34,55 @@ body {
 
 header {
   text-align: center;
-  padding: 1rem 1rem 2.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  /* 1.2秒かけて滑らかに縮むアニメーション（時間は好みに合わせて調整してください） */
+  animation: shrinkHeader 5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 header h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #0f172a;
   margin: 0 0 1rem;
-  letter-spacing: 0.05em;
-  /* テキストにグラデーションを適用 */
-  background: linear-gradient(135deg, #38bdf8, #f472b6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  /* タグ風の装飾 */
+}
+header h1::before {
+  content: "< ";
+  color: #f472b6;
+}
+header h1::after {
+  content: " />";
+  color: #38bdf8;
 }
 header p {
-  font-size: 1.2rem;
-  color: #64748b; /* スレートグレー系で落ち着かせる */
-  font-weight: 500;
+  font-size: 1.1rem;
+  color: #475569;
+  font-family: monospace; /* 等幅フォントでコードっぽく */
   margin: 0;
-  letter-spacing: 0.1em;
+  position: relative;
+  display: inline-block;
+  /* ターミナル風の点滅カーソル */
+}
+header p::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: #0f172a;
+  margin-left: 8px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
 }
 
+/* カーソル点滅用のアニメーション */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
 span.nowrap-word {
   white-space: nowrap;
 }
