@@ -3,24 +3,41 @@
 $main-color: #f8fafc;
 $sub-color: #0f172a;
 $accent-blue: #38bdf8;
-$accent-pink: #f472b6;
+$accent-pink: #ff118c;
 
 * {
     box-sizing: content-box;
 }
 /* ヘッダー縮小アニメーションの定義 */
 @keyframes shrinkHeader {
-    0% {
-        min-height: 100vh;
-        padding: 0 1.5rem;
-    }
+    0%,
     30% {
         min-height: 100vh;
         padding: 0 1.5rem;
     }
     100% {
         min-height: 0;
-        padding: 1rem 1.5rem 3rem;
+        padding: 3rem 1.5rem 3rem;
+    }
+}
+/*通知フェードアウトアニメーション*/
+@keyframes fadeOutNotification {
+    0%,
+    30% {
+        opacity: 1;
+        max-height: 50px;
+        margin-top: 1.5rem;
+    }
+    45% {
+        opacity: 0;
+        max-height: 50px;
+        margin-top: 1.5rem;
+    }
+    100% {
+        opacity: 0;
+        max-height: 0;
+        margin-top: 0;
+        overflow: hidden;
     }
 }
 body {
@@ -65,7 +82,7 @@ header {
         display: inline-block;
 
         /* ターミナル風の点滅カーソル */
-        &::after {
+        &:not(.notification)::after {
             content: "";
             display: inline-block;
             width: 8px;
@@ -75,6 +92,10 @@ header {
             vertical-align: middle;
             animation: blink 1s step-end infinite;
         }
+    }
+
+    .notification {
+        animation: fadeOutNotification 5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 }
 
@@ -86,6 +107,10 @@ header {
 }
 span.nowrap-word {
     white-space: nowrap;
+}
+
+[id$="tab"] {
+    padding-bottom: 30vh;
 }
 
 #tab-nav {
@@ -213,6 +238,51 @@ $loader-rottime: 0.7s;
     iframe {
         max-width: 100%;
     }
+
+    .image-group {
+        margin: 0 0 2rem 0;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .image-wrapper {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+
+            img {
+                flex: 1;
+                min-width: 0; /* Flexbox内で画像を適切に縮小させるために必須 */
+                height: 180px; /* 固定の高さ（お好みで調整してください） */
+                object-fit: cover; /* アスペクト比を保ちつつ枠を埋める */
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+                background-color: rgba(255, 255, 255, 0.05); /* 読み込み前の背景色 */
+            }
+        }
+
+        figcaption {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #cbd5e1; /* 黒背景に映える明るめのスレートカラー */
+            margin-top: 1rem;
+            letter-spacing: 0.05em;
+
+            /* テキストの左右に装飾線を追加 */
+            &::before,
+            &::after {
+                content: "";
+                height: 1px;
+                width: 30px;
+                background-color: rgba(255, 255, 255, 0.15);
+                margin: 0 12px;
+            }
+        }
+    }
 }
 
 .details.is-active {
@@ -280,7 +350,6 @@ $loader-rottime: 0.7s;
         }
     }
 
-    // 自己紹介・趣味セクション
     section {
         background: #fff;
         padding: 2rem;
@@ -294,7 +363,42 @@ $loader-rottime: 0.7s;
             line-height: 1.8;
         }
     }
+    #motto {
+        #motto-word {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0;
+            color: transparent;
+            background: linear-gradient(135deg, $accent-blue, $accent-pink);
+            -webkit-background-clip: text;
+            background-clip: text;
+            letter-spacing: 0.2em;
+            padding-left: 0.2em; // letter-spacingによる中央ズレの補正
+            position: relative;
+            z-index: 1;
 
+            &::before,
+            &::after {
+                position: absolute;
+                font-size: 6rem;
+                color: rgba($sub-color, 0.3);
+                font-family: serif;
+                line-height: 1;
+                z-index: -1;
+            }
+            &::before {
+                content: "“";
+                top: -2rem;
+                left: 10%;
+            }
+            &::after {
+                content: "”";
+                bottom: -3rem;
+                right: 10%;
+            }
+        }
+    }
     #language-exprs {
         display: grid;
         grid-template-columns: 1fr;
@@ -317,7 +421,7 @@ $loader-rottime: 0.7s;
             &:hover {
                 top: -3px;
                 box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-                z-index: 10; 
+                z-index: 10;
             }
 
             .language {
@@ -424,7 +528,7 @@ $loader-rottime: 0.7s;
 #my-history-tab {
     max-width: 800px;
     margin: 3rem auto;
-    padding: 0 1.5rem;
+    padding: auto 1.5rem;
 
     .my-histroies {
         position: relative;
@@ -592,7 +696,7 @@ $loader-rottime: 0.7s;
 #artifacts-tab {
     max-width: 1000px;
     margin: 3rem auto;
-    padding: 0 1.5rem;
+    padding: auto 1.5rem;
 
     .artifacts {
         display: grid;
@@ -656,5 +760,115 @@ $loader-rottime: 0.7s;
                 }
             }
         }
+    }
+}
+
+
+p a[href] {
+    color: $accent-blue;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        border-bottom-color: $accent-blue;
+        color: darken($accent-blue, 10%);
+    }
+
+    &[target="_blank"]::after {
+        content: '\2197'; /* ↗ */
+        display: inline-block;
+        margin-left: 4px;
+        font-size: 0.85em;
+        transition: transform 0.2s ease;
+    }
+
+    &:hover[target="_blank"]::after {
+        transform: translate(2px, -2px);
+    }
+}
+
+.expr:has(.details) .expr-title,
+.my-history-box:has(.details) .my-history-title,
+.artifact:has(.details) .artifact-title {
+    cursor: help;
+    
+    &::after {
+        content: '\24D8'; /* ⓘ */
+        font-family: sans-serif;
+        font-size: 1.1rem;
+        color: $accent-pink;
+        margin-left: 8px;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+        font-weight: bold;
+    }
+
+    &:hover::after {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.details-box:has(.details) .details-anchor {
+    display: inline-block;
+    cursor: help;
+    color: $sub-color;
+    border-bottom: 2px dotted $accent-pink;
+    font-weight: 700;
+    transition: color 0.3s ease;
+
+    &::after {
+        content: '\24D8'; /* ⓘ */
+        font-size: 0.9em;
+        color: $accent-pink;
+        margin-left: 6px;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+
+    &:hover {
+        color: $accent-pink;
+        
+        &::after {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    }
+}
+
+.expr:has(> a[target="_blank"]),
+.artifact:has(> a[target="_blank"]) {
+    &::after {
+        content: '\2197'; /* ↗ */
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        color: rgba($accent-blue, 0.3);
+        transition: all 0.3s ease;
+        pointer-events: none;
+    }
+
+    &:hover::after {
+        color: $accent-blue;
+        transform: translate(3px, -3px);
+    }
+}
+
+.my-history-box:has(> a[target="_blank"]) .my-history-title {
+    &::after {
+        content: '\2197'; /* ↗ */
+        display: inline-block;
+        font-size: 1.2rem;
+        color: $accent-blue;
+        margin-left: 8px;
+        transition: all 0.3s ease;
+    }
+
+    &:hover::after {
+        color: $accent-blue;
+        transform: translate(2px, -2px);
     }
 }

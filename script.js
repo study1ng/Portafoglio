@@ -1,5 +1,10 @@
 document.addEventListener(
     "DOMContentLoaded", _ => {
+        // ヘッダーアニメーションが終わるまでスクロール禁止
+        document.body.style.overflow = "hidden";
+        setTimeout(() => {
+            document.body.style.overflow = "";
+        }, 1500);
         // タブ切り替えロジック
         document.querySelectorAll("li[id*=nav]").forEach(l => {
             l.addEventListener("click", _ => {
@@ -10,9 +15,9 @@ document.addEventListener(
         }
         )
         // details表示ロジック
-        document.querySelectorAll(".expr-title, .my-history-title, .artifact-title, .details-box").forEach(
+        document.querySelectorAll(".expr-title, .my-history-title, .artifact-title, .details-anchor").forEach(
             ttl => {
-                const container = ttl.closest(".expr, .my-history-box, .artifact");
+                const container = ttl.closest(".expr, .my-history-box, .artifact, .details-box");
                 const details = container.querySelector(".details");
                 if (details === null) {
                     return;

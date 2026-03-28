@@ -6,17 +6,32 @@
 
 /* ヘッダー縮小アニメーションの定義 */
 @keyframes shrinkHeader {
-  0% {
-    min-height: 100vh;
-    padding: 0 1.5rem;
-  }
-  30% {
+  0%, 30% {
     min-height: 100vh;
     padding: 0 1.5rem;
   }
   100% {
     min-height: 0;
-    padding: 1rem 1.5rem 3rem;
+    padding: 3rem 1.5rem 3rem;
+  }
+}
+/*通知フェードアウトアニメーション*/
+@keyframes fadeOutNotification {
+  0%, 30% {
+    opacity: 1;
+    max-height: 50px;
+    margin-top: 1.5rem;
+  }
+  45% {
+    opacity: 0;
+    max-height: 50px;
+    margin-top: 1.5rem;
+  }
+  100% {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
   }
 }
 body {
@@ -45,7 +60,7 @@ header h1 {
 }
 header h1::before {
   content: "< ";
-  color: #f472b6;
+  color: #ff118c;
 }
 header h1::after {
   content: " />";
@@ -60,7 +75,7 @@ header p {
   display: inline-block;
   /* ターミナル風の点滅カーソル */
 }
-header p::after {
+header p:not(.notification)::after {
   content: "";
   display: inline-block;
   width: 8px;
@@ -69,6 +84,9 @@ header p::after {
   margin-left: 8px;
   vertical-align: middle;
   animation: blink 1s step-end infinite;
+}
+header .notification {
+  animation: fadeOutNotification 5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* カーソル点滅用のアニメーション */
@@ -79,6 +97,10 @@ header p::after {
 }
 span.nowrap-word {
   white-space: nowrap;
+}
+
+[id$=tab] {
+  padding-bottom: 30vh;
 }
 
 #tab-nav {
@@ -136,7 +158,7 @@ span.nowrap-word {
   transform: translateX(-50%);
   width: 60%;
   height: 4px;
-  background: linear-gradient(90deg, #38bdf8, #f472b6);
+  background: linear-gradient(90deg, #38bdf8, #ff118c);
   border-radius: 2px 2px 0 0;
 }
 
@@ -202,6 +224,45 @@ span.nowrap-word {
 }
 .details iframe {
   max-width: 100%;
+}
+.details .image-group {
+  margin: 0 0 2rem 0;
+}
+.details .image-group:last-child {
+  margin-bottom: 0;
+}
+.details .image-group .image-wrapper {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+.details .image-group .image-wrapper img {
+  flex: 1;
+  min-width: 0; /* Flexbox内で画像を適切に縮小させるために必須 */
+  height: 180px; /* 固定の高さ（お好みで調整してください） */
+  -o-object-fit: cover;
+     object-fit: cover; /* アスペクト比を保ちつつ枠を埋める */
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.05); /* 読み込み前の背景色 */
+}
+.details .image-group figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #cbd5e1; /* 黒背景に映える明るめのスレートカラー */
+  margin-top: 1rem;
+  letter-spacing: 0.05em;
+  /* テキストの左右に装飾線を追加 */
+}
+.details .image-group figcaption::before, .details .image-group figcaption::after {
+  content: "";
+  height: 1px;
+  width: 30px;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 0 12px;
 }
 
 .details.is-active {
@@ -275,6 +336,38 @@ span.nowrap-word {
   color: #475569;
   line-height: 1.8;
 }
+#about-me-tab .about-me-content #motto #motto-word {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 2rem 0;
+  color: transparent;
+  background: linear-gradient(135deg, #38bdf8, #ff118c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  position: relative;
+  z-index: 1;
+}
+#about-me-tab .about-me-content #motto #motto-word::before, #about-me-tab .about-me-content #motto #motto-word::after {
+  position: absolute;
+  font-size: 6rem;
+  color: rgba(15, 23, 42, 0.3);
+  font-family: serif;
+  line-height: 1;
+  z-index: -1;
+}
+#about-me-tab .about-me-content #motto #motto-word::before {
+  content: "“";
+  top: -2rem;
+  left: 10%;
+}
+#about-me-tab .about-me-content #motto #motto-word::after {
+  content: "”";
+  bottom: -3rem;
+  right: 10%;
+}
 #about-me-tab .about-me-content #language-exprs {
   display: grid;
   grid-template-columns: 1fr;
@@ -286,7 +379,7 @@ span.nowrap-word {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-  border-top: 4px solid #f472b6;
+  border-top: 4px solid #ff118c;
   position: relative;
   top: 0;
   z-index: 1;
@@ -374,7 +467,7 @@ span.nowrap-word {
   display: block;
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg, #38bdf8, #f472b6);
+  background: linear-gradient(90deg, #38bdf8, #ff118c);
   margin: 0.8rem auto 0;
   border-radius: 2px;
 }
@@ -385,7 +478,7 @@ span.nowrap-word {
 #my-history-tab {
   max-width: 800px;
   margin: 3rem auto;
-  padding: 0 1.5rem;
+  padding: auto 1.5rem;
 }
 #my-history-tab .my-histroies {
   position: relative;
@@ -502,15 +595,15 @@ span.nowrap-word {
 }
 #my-history-tab .my-histroies .my-history-box:hover::before {
   transform: translateY(-50%) scale(1.3);
-  background: #f472b6;
+  background: #ff118c;
 }
 #my-history-tab .my-histroies .my-history-box:hover .my-history-title {
-  border-color: #f472b6;
+  border-color: #ff118c;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 #my-history-tab .my-histroies .my-history-box:hover .my-history-title time {
-  color: #f472b6;
+  color: #ff118c;
 }
 
 @keyframes scrollStripe {
@@ -524,7 +617,7 @@ span.nowrap-word {
 #artifacts-tab {
   max-width: 1000px;
   margin: 3rem auto;
-  padding: 0 1.5rem;
+  padding: auto 1.5rem;
 }
 #artifacts-tab .artifacts {
   display: grid;
@@ -544,7 +637,7 @@ span.nowrap-word {
   top: 0;
 }
 #artifacts-tab .artifacts .artifact:nth-child(even) {
-  border-top-color: #f472b6;
+  border-top-color: #ff118c;
 }
 #artifacts-tab .artifacts .artifact:hover, #artifacts-tab .artifacts .artifact:has(.details.is-active) {
   top: -5px;
@@ -577,4 +670,104 @@ span.nowrap-word {
   font-weight: 700;
   color: #0f172a;
   line-height: 1.4;
+}
+
+p a[href] {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+p a[href]:hover {
+  border-bottom-color: #38bdf8;
+  color: rgb(8.5970873786, 171.9417475728, 244.4029126214);
+}
+p a[href][target=_blank]::after {
+  content: "↗"; /* ↗ */
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 0.85em;
+  transition: transform 0.2s ease;
+}
+p a[href]:hover[target=_blank]::after {
+  transform: translate(2px, -2px);
+}
+
+.expr:has(.details) .expr-title,
+.my-history-box:has(.details) .my-history-title,
+.artifact:has(.details) .artifact-title {
+  cursor: help;
+}
+.expr:has(.details) .expr-title::after,
+.my-history-box:has(.details) .my-history-title::after,
+.artifact:has(.details) .artifact-title::after {
+  content: "ⓘ"; /* ⓘ */
+  font-family: sans-serif;
+  font-size: 1.1rem;
+  color: #ff118c;
+  margin-left: 8px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+.expr:has(.details) .expr-title:hover::after,
+.my-history-box:has(.details) .my-history-title:hover::after,
+.artifact:has(.details) .artifact-title:hover::after {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.details-box:has(.details) .details-anchor {
+  display: inline-block;
+  cursor: help;
+  color: #0f172a;
+  border-bottom: 2px dotted #ff118c;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+.details-box:has(.details) .details-anchor::after {
+  content: "ⓘ"; /* ⓘ */
+  font-size: 0.9em;
+  color: #ff118c;
+  margin-left: 6px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+.details-box:has(.details) .details-anchor:hover {
+  color: #ff118c;
+}
+.details-box:has(.details) .details-anchor:hover::after {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.expr:has(> a[target=_blank])::after,
+.artifact:has(> a[target=_blank])::after {
+  content: "↗"; /* ↗ */
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: rgba(56, 189, 248, 0.3);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.expr:has(> a[target=_blank]):hover::after,
+.artifact:has(> a[target=_blank]):hover::after {
+  color: #38bdf8;
+  transform: translate(3px, -3px);
+}
+
+.my-history-box:has(> a[target=_blank]) .my-history-title::after {
+  content: "↗"; /* ↗ */
+  display: inline-block;
+  font-size: 1.2rem;
+  color: #38bdf8;
+  margin-left: 8px;
+  transition: all 0.3s ease;
+}
+.my-history-box:has(> a[target=_blank]) .my-history-title:hover::after {
+  color: #38bdf8;
+  transform: translate(2px, -2px);
 }/*# sourceMappingURL=style.css.map */
