@@ -25,12 +25,11 @@ $accent-pink: #ff118c;
     0%,
     30% {
         opacity: 1;
-        max-height: 50px;
         margin-top: 1.5rem;
     }
     45% {
         opacity: 0;
-        max-height: 50px;
+        max-height: 8rem;
         margin-top: 1.5rem;
     }
     100% {
@@ -184,6 +183,12 @@ span.nowrap-word {
 #tab-nav:not(:has(ul #about-me-nav.opening)) ~ #about-me-tab {
     display: none;
 }
+#tab-nav:has(ul #skill-nav.opening) ~ #skill-tab {
+    display: block;
+}
+#tab-nav:not(:has(ul #skill-nav.opening)) ~ #skill-tab {
+    display: none;
+}
 #tab-nav:has(ul #my-history-nav.opening) ~ #my-history-tab {
     display: block;
 }
@@ -254,7 +259,6 @@ $loader-rottime: 0.7s;
             img {
                 flex: 1;
                 min-width: 0; /* Flexbox内で画像を適切に縮小させるために必須 */
-                height: 180px; /* 固定の高さ（お好みで調整してください） */
                 object-fit: cover; /* アスペクト比を保ちつつ枠を埋める */
                 border-radius: 6px;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -396,6 +400,84 @@ $loader-rottime: 0.7s;
                 content: "”";
                 bottom: -3rem;
                 right: 10%;
+            }
+        }
+    }
+}
+
+#skill-tab {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+
+    .skill-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+    #other-skills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+
+        .skill-box {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-left: 4px solid $accent-blue;
+            transition:
+                top 0.3s ease,
+                box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+
+            &:nth-child(even) {
+                border-left-color: $accent-pink;
+            }
+
+            &:hover,
+            &:has(.details.is-active) {
+                top: -3px;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+                z-index: 10;
+            }
+
+            .details-anchor {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                border-bottom: none;
+                align-items: flex-start;
+
+                &::after {
+                    position: absolute;
+                    top: 1.5rem;
+                    right: 1.5rem;
+                    margin: 0;
+                }
+
+                .skill {
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    color: $sub-color;
+                }
+
+                .skill-short {
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    color: #64748b;
+                    background: rgba($sub-color, 0.05);
+                    padding: 0.3rem 0.8rem;
+                    border-radius: 20px;
+                    border: 1px solid rgba($sub-color, 0.1);
+                }
+            }
+
+            > .skill {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: $sub-color;
             }
         }
     }
@@ -763,21 +845,20 @@ $loader-rottime: 0.7s;
     }
 }
 
-
 p a[href] {
     color: $accent-blue;
     text-decoration: none;
     font-weight: 500;
     border-bottom: 1px solid transparent;
     transition: all 0.2s ease;
-    
+
     &:hover {
         border-bottom-color: $accent-blue;
         color: darken($accent-blue, 10%);
     }
 
     &[target="_blank"]::after {
-        content: '\2197'; /* ↗ */
+        content: "\2197"; /* ↗ */
         display: inline-block;
         margin-left: 4px;
         font-size: 0.85em;
@@ -789,51 +870,33 @@ p a[href] {
     }
 }
 
-.expr:has(.details) .expr-title,
-.my-history-box:has(.details) .my-history-title,
-.artifact:has(.details) .artifact-title {
-    cursor: help;
-    
-    &::after {
-        content: '\24D8'; /* ⓘ */
-        font-family: sans-serif;
-        font-size: 1.1rem;
-        color: $accent-pink;
-        margin-left: 8px;
-        opacity: 0.5;
-        transition: all 0.3s ease;
-        font-weight: bold;
-    }
-
-    &:hover::after {
-        opacity: 1;
-        transform: scale(1.1);
-    }
-}
-
 .details-box:has(.details) .details-anchor {
     display: inline-block;
     cursor: help;
     color: $sub-color;
-    border-bottom: 2px dotted $accent-pink;
     font-weight: 700;
     transition: color 0.3s ease;
+    position: relative;
 
-    &::after {
-        content: '\24D8'; /* ⓘ */
-        font-size: 0.9em;
+    &::before {
+        content: "\24D8"; /* ⓘ */
+        position: absolute;
+        left: -1rem;
+        top: 0;
+        transform: translateY(-50%); 
+        font-size: 1em;
         color: $accent-pink;
-        margin-left: 6px;
         opacity: 0.7;
         transition: all 0.3s ease;
+        font-weight: bold;
     }
 
     &:hover {
         color: $accent-pink;
-        
-        &::after {
+
+        &::before {
             opacity: 1;
-            transform: scale(1.1);
+            transform: translateY(-50%) scale(1.1);
         }
     }
 }
@@ -841,7 +904,7 @@ p a[href] {
 .expr:has(> a[target="_blank"]),
 .artifact:has(> a[target="_blank"]) {
     &::after {
-        content: '\2197'; /* ↗ */
+        content: "\2197"; /* ↗ */
         position: absolute;
         top: 15px;
         right: 15px;
@@ -859,7 +922,7 @@ p a[href] {
 
 .my-history-box:has(> a[target="_blank"]) .my-history-title {
     &::after {
-        content: '\2197'; /* ↗ */
+        content: "\2197"; /* ↗ */
         display: inline-block;
         font-size: 1.2rem;
         color: $accent-blue;

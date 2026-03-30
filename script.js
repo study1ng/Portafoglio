@@ -8,16 +8,17 @@ document.addEventListener(
         // タブ切り替えロジック
         document.querySelectorAll("li[id*=nav]").forEach(l => {
             l.addEventListener("click", _ => {
-                document.querySelector(".opening").classList.toggle("opening");
+                if (document.querySelector(".opening"))
+                    document.querySelector(".opening").classList.toggle("opening");
                 l.classList.toggle("opening");
             }
             )
         }
         )
         // details表示ロジック
-        document.querySelectorAll(".expr-title, .my-history-title, .artifact-title, .details-anchor").forEach(
+        document.querySelectorAll(".details-anchor").forEach(
             ttl => {
-                const container = ttl.closest(".expr, .my-history-box, .artifact, .details-box");
+                const container = ttl.closest(".details-box");
                 const details = container.querySelector(".details");
                 if (details === null) {
                     return;

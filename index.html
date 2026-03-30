@@ -13,12 +13,16 @@
     <header>
         <h1>My Portfolio</h1>
         <p>Software Development & Machine Learning</p>
-        <p class="notification">いくつかの要素はタイトルにマウスを当てることで詳細な説明をご確認いただけます.</p>
+        <p class="notification">
+            &#x24D8;が表示される要素はマウスをホバーすることで詳細な説明をご確認いただけます.
+            &#x2197;が表示される要素はクリックすることで関係する情報(外部ページ)をご確認いただけます. 
+            いくつかの要素はタイトルにマウスを当てることで詳細な説明をご確認いただけます.</p>
     </header>
 
     <nav id="tab-nav">
         <ul>
-            <li id="about-me-nav" class="opening">About Me</li>
+            <li id="about-me-nav">About Me</li>
+            <li id="skill-nav">Skills</li>
             <li id="my-history-nav">My History</li>
             <li id="artifacts-nav">Artifacts</li>
         </ul>
@@ -69,16 +73,6 @@
                         href="https://maps.app.goo.gl/NtLTfdyd7jyA93Gu6" target="_blank"
                         rel="noopener noreferrer">延吉市</a>で生まれ, 2013年からは清流の国・岐阜で育ちました. 趣味は自然と触れ合うことで,
                     今でも帰省する度に金華山に上っています. 生い茂る緑, 苔むす大岩, すれ違う人の温かな挨拶. 私は岐阜が大好きです.
-                </p>
-                <h4>強み</h4>
-                <p>
-                    私の最大の強みは学習し続ける能力だと考えております. 日本への移住や大学入試やオープンキャンパスの運営, アルバイト, そして日々の研究活動など, これまでいくつもの難題に直面してきましたが,
-                    持ち前の知識欲と学習に対する粘り強さで克服してきました.
-                </p>
-                <h4>将来へのビジョン</h4>
-                <p>
-                    これまでの私の人生は家族や恩師, 地域の方々や研究室の先輩, 同窓など, 数えきれないほど多くの方々に支えられてきたと自覚しております.
-                    私一人では決して今までの成果を達成することはできなかったでしょう. だからこそ, 学生から大人になる中で, 私は誰かの役に立つことができる仕事, 誰かのことを幸せにできる仕事をしたいと考えております.
                 </p>
             </section>
             <section id="motto">
@@ -153,8 +147,49 @@
                         </div>
                         <figcaption>富士山旅行</figcaption>
                     </figure>
+                    <figure class="image-group">
+                        <div class="image-wrapper">
+                            <img src="img/yozakura.webp" alt="夜, 桜祭り">
+                        </div>
+                        <figcaption>一夜城</figcaption>
+                    </figure>
                 </div>
             </section>
+        </div>
+    </div>
+    <div id="skill-tab">        
+        <div class="tab-header">
+            <h3>技術</h3>
+        </div>
+        <div class="skill-content">
+            <div id="other-skills">
+                <div class="skill-box details-box">
+                    <div class="skill-title details-anchor">
+                        <div class="skill">英語</div>
+                        <div class="skill-short">TOEIC 800点</div>
+                    </div>
+                </div>
+                <div class="skill-box details-box">
+                    <div class="skill-title details-anchor">
+                        <div class="skill">中国語</div>
+                        <div class="skill-short">ネイティブレベル</div>
+                    </div>
+                    <div class="details">
+                        研究室では30人程度の中国人の先輩がいますが, 彼らとも中国語で意思疎通ができます. 
+                    </div>
+                </div>
+                <div class="skill-box details-box">
+                    <div class="skill-title details-anchor">
+                        <div class="skill">日本語</div>
+                        <div class="skill-short">ネイティブレベル</div>
+                    </div>
+                </div>
+                <div class="skill-box details-box">
+                    <div class="skill-title details-anchor">
+                        <div class="skill">普通自動車免許</div>
+                    </div>
+                </div>
+            </div>
             <div id="language-exprs">
                 <div id="python" class="language-box">
                     <div class="language">Python</div>
@@ -162,13 +197,13 @@
                         2022年3月
                     </time>
                     <div class="exprs">
-                        <div class="expr">
-                            <div class="expr-title">
+                        <div class="expr details-box">
+                            <div class="expr-title details-anchor">
                                 <span class="category">授業</span>
                             </div>
                         </div>
-                        <div class="expr">
-                            <div class="expr-title">
+                        <div class="expr details-box">
+                            <div class="expr-title details-anchor">
                                 <span class="category">アルバイト</span>
                                 <span class="content">トップページを起点とした再帰的リンク探索による非webp画像発見</span>
                             </div>
@@ -182,9 +217,9 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="expr">
+                        <div class="expr details-box">
                             <a href="https://github.com/study1ng/mdmethods/" target="_blank" rel="noopener noreferrer">
-                                <div class="expr-title">
+                                <div class="expr-title details-anchor">
                                     <span class="category">研究</span>
                                     <span class="content">深層学習手法による3次元CT像臓器領域自動抽出</span>
                                 </div>
@@ -209,9 +244,9 @@
                         2022年12月
                     </time>
                     <div class="exprs">
-                        <div class="expr">
+                        <div class="expr details-box">
                             <a href="https://github.com/study1ng/medpp" target="_blank" rel="noopener noreferrer">
-                                <div class="expr-title">
+                                <div class="expr-title details-anchor">
                                     <span class="category">個人開発</span>
                                     <span class="content">医用画像特化のDSL</span>
                                 </div>
@@ -236,14 +271,14 @@
                         2022年8月
                     </time>
                     <div class="exprs">
-                        <div class="expr">
-                            <div class="expr-title">
+                        <div class="expr details-box">
+                            <div class="expr-title details-anchor">
                                 <span class="category">アルバイト</span>
                                 <span class="content">Google Recaptchaの導入</span>
                             </div>
                         </div>
-                        <div id="auto-blog" class="expr">
-                            <div class="expr-title" id="auto-blog">
+                        <div id="auto-blog" class="expr details-box">
+                            <div class="expr-title details-anchor" id="auto-blog">
                                 <span class="category">アルバイト</span>
                                 <span class="content">検索分析によるブログテーマ自動提案</span>
                             </div>
@@ -266,8 +301,8 @@
                         2022年7月
                     </time>
                     <div class="exprs">
-                        <div class="expr">
-                            <div class="expr-title">
+                        <div class="expr details-box">
+                            <div class="expr-title details-anchor">
                                 <span class="category">アルバイト</span>
                                 <span class="content">ウェブサイトの制作</span>
                             </div>
@@ -280,8 +315,8 @@
                         2023年8月
                     </time>
                     <div class="exprs">
-                        <div class="expr">
-                            <div class="expr-title">
+                        <div class="expr details-box">
+                            <div class="expr-title details-anchor">
                                 <span class="category">アルバイト</span>
                                 <span class="content">WordPressの利用</span>
                             </div>
@@ -306,18 +341,18 @@
             <p>これまでの私の人生の中で起きた主な出来事や挑戦について紹介しています</p>
         </div>
         <div class="my-histroies">
-            <div class="my-history-box">
-                <div class="my-history-title">
+            <div class="my-history-box details-box">
+                <div class="my-history-title details-anchor">
                     <time datetime="2019-04">2019年4月</time>
                     <span><span class="nowrap-word">岐阜県立</span><span class="nowrap-word">岐阜北</span><span
                             class="nowrap-word">高等学校</span> <span class="nowrap-word">入学</span></span>
                 </div>
             </div>
 
-            <div class="my-history-box">
+            <div class="my-history-box details-box">
                 <a href="https://www.spogomi.or.jp/zenkoku/2020/assets/pdf/2019/spogomi_2019_report" target="_blank"
                     rel="noopener noreferrer">
-                    <div class="my-history-title">
+                    <div class="my-history-title details-anchor">
                         <time datetime="2019-08-05">2019年8月5日</time>
                         <span><span class="nowrap-word">スポGOMI甲子園</span><span class="nowrap-word">岐阜県大会</span> <span
                                 class="nowrap-word">出場</span></span>
@@ -334,24 +369,24 @@
                 </div>
             </div>
 
-            <div class="my-history-box">
-                <div class="my-history-title">
+            <div class="my-history-box details-box">
+                <div class="my-history-title details-anchor">
                     <time datetime="2022-03">2022年3月</time>
                     <span><span class="nowrap-word">岐阜県立</span><span class="nowrap-word">岐阜北</span><span
                             class="nowrap-word">高等学校</span> <span class="nowrap-word">卒業</span></span>
                 </div>
             </div>
 
-            <div class="my-history-box">
-                <div class="my-history-title">
+            <div class="my-history-box details-box">
+                <div class="my-history-title details-anchor">
                     <time datetime="2022-04">2022年4月</time>
                     <span><span class="nowrap-word">名古屋大学</span><span class="nowrap-word">情報学部</span><span
                             class="nowrap-word">コンピュータ科学科</span> <span class="nowrap-word">入学</span></span>
                 </div>
             </div>
 
-            <div class="my-history-box">
-                <div class="my-history-title">
+            <div class="my-history-box details-box">
+                <div class="my-history-title details-anchor">
                     <time datetime="2023-08-07">2023年8月7日</time>
                     <span><span class="nowrap-word">名古屋大学</span><span class="nowrap-word">オープン</span><span
                             class="nowrap-word">キャンパス</span><span class="nowrap-word">学生企画</span> <span
@@ -365,9 +400,9 @@
                 </div>
             </div>
 
-            <div class="my-history-box">
+            <div class="my-history-box details-box">
                 <a href="http://www.newves.org/wiki/index.php" target="_blank" rel="noopener noreferrer">
-                    <div class="my-history-title">
+                    <div class="my-history-title details-anchor">
                         <time datetime="2025-04-01">2025年4月1日</time>
                         <span><span class="nowrap-word">森・小田</span><span class="nowrap-word">研究室</span> <span
                                 class="nowrap-word">配属</span></span>
@@ -379,16 +414,16 @@
                 </div>
             </div>
 
-            <div class="my-history-box">
-                <div class="my-history-title">
+            <div class="my-history-box details-box">
+                <div class="my-history-title details-anchor">
                     <time datetime="2026-03-25">2026年3月25日</time>
                     <span><span class="nowrap-word">名古屋大学</span><span class="nowrap-word">情報学部</span><span
                             class="nowrap-word">コンピュータ科学科</span> <span class="nowrap-word">卒業</span></span>
                 </div>
             </div>
 
-            <div class="my-history-box">
-                <div class="my-history-title">
+            <div class="my-history-box details-box">
+                <div class="my-history-title details-anchor">
                     <time datetime="2026-04-05">2026年4月5日</time>
                     <span><span class="nowrap-word">名古屋大学</span><span class="nowrap-word">大学院</span><span
                             class="nowrap-word">情報学研究科</span><span class="nowrap-word">知能システム専攻</span> <span
@@ -396,8 +431,8 @@
                 </div>
             </div>
 
-            <div class="my-history-box">
-                <div class="my-history-title">
+            <div class="my-history-box details-box">
+                <div class="my-history-title details-anchor">
                     <time datetime="2026-07">2026年7月</time>
                     <span><span class="nowrap-word">第45回</span> <span class="nowrap-word">日本医用画像</span><span
                             class="nowrap-word">工学会大会</span> <span class="nowrap-word">発表</span></span>
@@ -412,9 +447,9 @@
             <p>今まで作ってきたもののうち, ウェブ上に公開できるものを紹介します.</p>
         </div>
         <div class="artifacts">
-            <div class="artifact" id="medp4">
+            <div class="artifact details-box" id="medp4">
                 <a href="https://github.com/study1ng/medpp/" target="_blank" rel="noopener noreferrer">
-                    <div class="artifact-title">
+                    <div class="artifact-title details-anchor">
                         <span class="artifact-category">
                             個人開発
                         </span>
@@ -433,10 +468,10 @@
                 </div>
             </div>
 
-            <div class="artifact" id="thesis">
+            <div class="artifact details-box" id="thesis">
                 <a href="https://1drv.ms/p/c/915fa0e4e31dee9b/IQBHBmUMqkH7R4C0TjzAv4cbAWQtmUqXgCaB9hdaRMz-CDY?e=Btz4Xz"
                     target="_blank" rel="noopener noreferrer">
-                    <div class="artifact-title">
+                    <div class="artifact-title details-anchor">
                         <span class="artifact-category">
                             研究
                         </span>
@@ -460,9 +495,9 @@
                 </div>
             </div>
 
-            <div class="artifact" id="mdmethods">
+            <div class="artifact details-box" id="mdmethods">
                 <a href="https://github.com/study1ng/mdmethods/" target="_blank" rel="noopener noreferrer">
-                    <div class="artifact-title">
+                    <div class="artifact-title details-anchor">
                         <span class="artifact-category">
                             研究
                         </span>
